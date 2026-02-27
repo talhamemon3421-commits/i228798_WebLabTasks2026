@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Profile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f0f0ee;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07), 0 8px 24px rgba(0,0,0,0.06);
+      width: 100%;
+      max-width: 340px;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1), 0 12px 32px rgba(0,0,0,0.08);
+    }
+
+    .card-top {
+      padding: 2rem 1.8rem 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+    }
+
+    .basic h2 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #1a1a1a;
+      letter-spacing: -0.01em;
+    }
+
+    .basic .reg {
+      font-size: 0.72rem;
+      color: #888;
+      margin-top: 0.15rem;
+    }
+
+    .basic .dept {
+      display: inline-block;
+      margin-top: 0.4rem;
+      font-size: 0.68rem;
+      font-weight: 500;
+      color: #555;
+      background: #f0f0ee;
+      padding: 0.2rem 0.55rem;
+      border-radius: 20px;
+    }
+
+    .divider {
+      height: 1px;
+      background: #f0f0ee;
+      margin: 0 1.8rem;
+    }
+
+    .extra {
+      display: none;
+      padding: 1.2rem 1.8rem 0.4rem;
+    }
+
+    .extra.open { display: block; }
+
+    .row {
+      margin-bottom: 0.85rem;
+    }
+
+    .row .lbl {
+      font-size: 0.65rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #aaa;
+      margin-bottom: 0.25rem;
+    }
+
+    .row .val {
+      font-size: 0.82rem;
+      color: #333;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .tag {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      background: #f0f0ee;
+      color: #444;
+    }
+
+    .card-btn {
+      display: block;
+      width: calc(100% - 3.6rem);
+      margin: 1rem 1.8rem 1.6rem;
+      padding: 0.6rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      text-align: center;
+      background: #1a1a1a;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .card-btn:hover { background: #333; }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <div class="card-top">
+    <div class="basic">
+      <h2>Muhammad Talha</h2>
+      <div class="reg">Reg # 22i-8798</div>
+      <span class="dept">Computer Science</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="extra" id="extra">
+    <div class="row">
+      <div class="lbl">Email</div>
+      <div class="val">i228798@nu.edu.pk</div>
+    </div>
+    <div class="row">
+      <div class="lbl">Skills</div>
+      <div class="tags">
+        <span class="tag">MongoDB</span>
+        <span class="tag">Express</span>
+        <span class="tag">React</span>
+        <span class="tag">Node.js</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="lbl">Hobbies</div>
+      <div class="tags">
+        <span class="tag">Chess</span>
+        <span class="tag">Photography</span>
+      </div>
+    </div>
+  </div>
+
+  <button class="card-btn" id="toggleBtn" onclick="toggle()">Show More</button>
+</div>
+
+<script>
+  function toggle() {
+    const extra = document.getElementById('extra');
+    const btn   = document.getElementById('toggleBtn');
+    const open  = extra.classList.toggle('open');
+    btn.textContent = open ? 'Show Less' : 'Show More';
+  }
+</script>
+</body>
+</html>

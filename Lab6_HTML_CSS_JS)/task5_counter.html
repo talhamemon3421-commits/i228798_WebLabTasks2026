@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Counter</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f0f0ee;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      color: #1a1a1a;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.05);
+      width: 100%;
+      max-width: 320px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #888;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-size: 0.7rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .display {
+      font-size: 5rem;
+      font-weight: 600;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      transition: color 0.2s;
+    }
+
+    .display.positive { color: #2a9d5c; }
+    .display.negative { color: #e05252; }
+    .display.zero     { color: #1a1a1a; }
+
+    .status {
+      font-size: 0.72rem;
+      color: #bbb;
+      margin-bottom: 2rem;
+      min-height: 1rem;
+    }
+
+    .btns {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0.5rem;
+    }
+
+    button {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 0.65rem 0;
+      border-radius: 8px;
+      border: 1.5px solid #e0e0e0;
+      background: #fafafa;
+      color: #333;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+    }
+
+    button:hover { background: #f0f0ee; border-color: #ccc; }
+
+    .btn-inc {
+      background: #1a1a1a;
+      color: #fff;
+      border-color: #1a1a1a;
+    }
+
+    .btn-inc:hover { background: #333; border-color: #333; }
+
+    .btn-reset:hover { background: #fff5f5; border-color: #e05252; color: #e05252; }
+
+    @keyframes pop {
+      0%   { transform: scale(1); }
+      40%  { transform: scale(1.08); }
+      100% { transform: scale(1); }
+    }
+
+    .pop { animation: pop 0.15s ease; }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <h1>Counter</h1>
+  <div class="display zero" id="display">0</div>
+  <div class="status" id="status">Ready</div>
+  <div class="btns">
+    <button class="btn-dec" onclick="change(-1)">− Decrement</button>
+    <button class="btn-reset" onclick="reset()">↺ Reset</button>
+    <button class="btn-inc" onclick="change(1)">+ Increment</button>
+  </div>
+</div>
+
+<script>
+  let count = 0;
+  const display = document.getElementById('display');
+  const status  = document.getElementById('status');
+
+  function update() {
+    display.textContent = count;
+    display.className = 'display ' + (count > 0 ? 'positive' : count < 0 ? 'negative' : 'zero');
+    display.classList.add('pop');
+    display.addEventListener('animationend', () => display.classList.remove('pop'), { once: true });
+    status.textContent = count > 0 ? 'Above zero' : count < 0 ? 'Below zero' : 'At zero';
+  }
+
+  function change(n) { count += n; update(); }
+  function reset()   { count = 0;  update(); status.textContent = 'Reset'; }
+</script>
+</body>
+</html>
